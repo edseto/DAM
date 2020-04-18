@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 public class Embarcadors {
     ArrayList <Embarcador> gestio = new ArrayList<Embarcador>();
@@ -63,7 +65,8 @@ public class Embarcadors {
     //Atracar vaixell
     public boolean atracarVaixell(String embarcador, Vaixell vaixell) throws Exception {
         if(!embarcadorExisteix(embarcador)) throw new Exception("L'embarcador no existeix!");
-        if(embarcadorOcupat(gestio.get(posicio))) throw new Exception("L'embarcador ja esta ocupat");
+        if(!embarcadorLliure(gestio.get(posicio))) throw new Exception("L'embarcador ja esta ocupat");
+        if(!midesBones(vaixell, gestio.get(posicio))) throw new Exception("El vaixell no entra en aquest embarcador");
 
         gestio.get(posicio).setVaixell(vaixell);
         return true;
@@ -82,9 +85,66 @@ public class Embarcadors {
         return trobat;
     }
 
-    //Embarcador ocupat?
-    private boolean embarcadorOcupat(Embarcador embarcador){
-        if(embarcador.getVaixell()!=null) return true;
+    //Embarcador lliure?
+    private boolean embarcadorLliure(Embarcador embarcador){
+        if(embarcador.getVaixell()==null) return true;
         return false;
+    }
+
+    //Cabrà el vaixell? (No se m'acudia cap nom que quedés bé :D)
+    private boolean midesBones(Vaixell vaixell, Embarcador embarcador) throws Exception{
+        if(moltAmple(vaixell, embarcador)) throw new Exception("El vaixell es massa llarg per aquest embarcador!");
+        if(moltLlarg(vaixell, embarcador)) throw new Exception("El vaixell es massa ample per aquest embarcador!");
+        
+        return true;
+    }
+
+    private boolean moltAmple(Vaixell vaixell, Embarcador embarcador){
+        return vaixell.getEslora()>embarcador.getEslora();
+    }
+
+    private boolean moltLlarg(Vaixell vaixell, Embarcador embarcador){
+        return vaixell.getManega()>embarcador.getManega();
+    }
+
+    //Solicitar Embarcador
+    public String solicitarEmbarcador(Vaixell vaixell) throws Exception{
+        boolean trobat = false;
+        posicio = 0;
+
+        while (!trobat&&posicio<gestio.size()) {
+            if(!moltAmple(vaixell, gestio.get(posicio))&&!moltLlarg(vaixell, gestio.get(posicio))){
+                if(embarcadorLliure(gestio.get(posicio))) trobat = true;
+            }else{
+                posicio++;
+            }
+        }
+
+        if(!trobat) throw new Exception("Ho sento, no hi ha cap embarcador disponible que vagi be amb el teu vaixell :(");
+        return gestio.get(posicio).getNom();
+    }
+
+    public int diesEmbarcat(Vaixell vaixell){
+        boolean trobat = false;
+        posicio = 0;
+
+        while (!trobat&&posicio<gestio.size()) {
+            if(gestio.get(posicio).getVaixell().equals(vaixell)) trobat=true;
+            else posicio++;
+        }
+
+        return (int)ChronoUnit.DAYS.between(LocalDate.now(), gestio.get(posicio).getDataEmbarcament());
+    }
+
+    public String alliberar(String embarcador) throws Exception {
+        String matricula;
+        double preu;
+
+        if(!embarcadorExisteix(embarcador)) throw new Exception("L'embarcador no existeix");
+        
+        matricula = gestio.get(posicio).getVaixell().getMatricula();
+        preu = gestio.get(posicio).getVaixell().solicitarPreu(this);
+
+        return matricula + " "+preu;
     }
 }

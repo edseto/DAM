@@ -28,9 +28,16 @@ public class Embarcador {
     public void setDataEmbarcament(LocalDate dataEmbarcament) { this.dataEmbarcament = dataEmbarcament; }
     public void setEslora(double eslora) { this.eslora = eslora; }
     public void setManega(double manega) { this.manega = manega; }
-    public void setVaixell(Vaixell vaixell) { this.vaixell = vaixell; }
+    public void setVaixell(Vaixell vaixell) { 
+        this.vaixell = vaixell;
+        if(this.vaixell!=null) setDataEmbarcament(LocalDate.now()); 
+    }
 
     //Mètodes
+    public void alliberar(){
+        setVaixell(null);
+    }
+
     @Override
     public String toString(){
         return vaixell.getMatricula()+" -> "+ vaixell.getEslora()+" x "+ vaixell.getManega()+" - "+

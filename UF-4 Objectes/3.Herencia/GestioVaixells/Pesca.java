@@ -4,6 +4,7 @@ public class Pesca extends Vaixell implements VaixellBase{
 
     public Pesca(String matricula, double eslora, double manega){
         super(matricula, eslora, manega);
+        super.setPrioritat(prioritat());
     }
 
     //Mètodes
