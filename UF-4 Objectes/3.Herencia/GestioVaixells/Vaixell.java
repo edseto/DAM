@@ -1,7 +1,7 @@
 public class Vaixell {
-    String matricula;
-    double eslora; //Llargada
-    double manega; //Amplada
+    private String matricula;
+    private double eslora; //Llargada
+    private double manega; //Amplada
 
     //Constructors
     public Vaixell() { /*Default*/ }
@@ -24,8 +24,7 @@ public class Vaixell {
 
     //Mètodes
     public boolean atracar(String embarcador, Embarcadors gestio) throws Exception{
-
-
+        if(!gestio.atracarVaixell(embarcador, this)) throw new Exception("Error al atracar");
         return true;
     }
 }

@@ -1,18 +1,19 @@
 import java.time.LocalDate;
 public class Embarcador {
     private String nom;
-    LocalDate dataEmbarcament;
-    double eslora; //Llargada
-    double manega; //Amplada
-    //VaixellBase vaixell;
+    private LocalDate dataEmbarcament;
+    private double eslora; //Llargada
+    private double manega; //Amplada
+    private Vaixell vaixell;
 
     //Constructors
     public Embarcador() { /*Default*/ }
 
-    public Embarcador(String nom, double eslora, double manega){
+    public Embarcador(String nom, int eslora, int manega){
         setNom(nom);
         setEslora(eslora);
         setManega(manega);
+        setVaixell(null);
     }
 
     //Getters
@@ -20,11 +21,19 @@ public class Embarcador {
     public LocalDate getDataEmbarcament() { return this.dataEmbarcament; }
     public double getEslora() { return this.eslora; }
     public double getManega() { return this.manega; }
+    public Vaixell getVaixell() { return this.vaixell; }
 
     //Setters
     public void setNom(String nom) { this.nom = nom; }
     public void setDataEmbarcament(LocalDate dataEmbarcament) { this.dataEmbarcament = dataEmbarcament; }
     public void setEslora(double eslora) { this.eslora = eslora; }
     public void setManega(double manega) { this.manega = manega; }
+    public void setVaixell(Vaixell vaixell) { this.vaixell = vaixell; }
 
+    //Mètodes
+    @Override
+    public String toString(){
+        return vaixell.getMatricula()+" -> "+ vaixell.getEslora()+" x "+ vaixell.getManega()+" - "+
+        this.getNom()+" Data embarc: "+this.getDataEmbarcament();
+    }
 }
