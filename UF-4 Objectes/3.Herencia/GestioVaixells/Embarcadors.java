@@ -63,7 +63,7 @@ public class Embarcadors {
     }
 
     //Atracar vaixell
-    public boolean atracarVaixell(String embarcador, Vaixell vaixell) throws Exception {
+    public boolean atracarVaixell(String embarcador, VaixellBase vaixell) throws Exception {
         if(!embarcadorExisteix(embarcador)) throw new Exception("L'embarcador no existeix!");
         if(!embarcadorLliure(gestio.get(posicio))) throw new Exception("L'embarcador ja esta ocupat");
         if(!midesBones(vaixell, gestio.get(posicio))) throw new Exception("El vaixell no entra en aquest embarcador");
@@ -92,23 +92,23 @@ public class Embarcadors {
     }
 
     //Cabrà el vaixell? (No se m'acudia cap nom que quedés bé :D)
-    private boolean midesBones(Vaixell vaixell, Embarcador embarcador) throws Exception{
+    private boolean midesBones(VaixellBase vaixell, Embarcador embarcador) throws Exception{
         if(moltAmple(vaixell, embarcador)) throw new Exception("El vaixell es massa llarg per aquest embarcador!");
         if(moltLlarg(vaixell, embarcador)) throw new Exception("El vaixell es massa ample per aquest embarcador!");
         
         return true;
     }
 
-    private boolean moltAmple(Vaixell vaixell, Embarcador embarcador){
+    private boolean moltAmple(VaixellBase vaixell, Embarcador embarcador){
         return vaixell.getEslora()>embarcador.getEslora();
     }
 
-    private boolean moltLlarg(Vaixell vaixell, Embarcador embarcador){
+    private boolean moltLlarg(VaixellBase vaixell, Embarcador embarcador){
         return vaixell.getManega()>embarcador.getManega();
     }
 
     //Solicitar Embarcador
-    public String solicitarEmbarcador(Vaixell vaixell) throws Exception{
+    public String solicitarEmbarcador(VaixellBase vaixell) throws Exception{
         boolean trobat = false;
         posicio = 0;
 
@@ -124,7 +124,7 @@ public class Embarcadors {
         return gestio.get(posicio).getNom();
     }
 
-    public int diesEmbarcat(Vaixell vaixell){
+    public int diesEmbarcat(VaixellBase vaixell){
         boolean trobat = false;
         posicio = 0;
 
@@ -141,10 +141,10 @@ public class Embarcadors {
         double preu;
 
         if(!embarcadorExisteix(embarcador)) throw new Exception("L'embarcador no existeix");
-        
+
         matricula = gestio.get(posicio).getVaixell().getMatricula();
         preu = gestio.get(posicio).getVaixell().solicitarPreu(this);
 
-        return matricula + " "+preu;
+        return "El vaixell amb matricula "+matricula + " ha salpat, el preu a abonar es de: "+preu+"€";
     }
 }

@@ -4,7 +4,7 @@ public class Embarcador {
     private LocalDate dataEmbarcament;
     private double eslora; //Llargada
     private double manega; //Amplada
-    private Vaixell vaixell;
+    private VaixellBase vaixell;
 
     //Constructors
     public Embarcador() { /*Default*/ }
@@ -21,14 +21,14 @@ public class Embarcador {
     public LocalDate getDataEmbarcament() { return this.dataEmbarcament; }
     public double getEslora() { return this.eslora; }
     public double getManega() { return this.manega; }
-    public Vaixell getVaixell() { return this.vaixell; }
+    public VaixellBase getVaixell() { return this.vaixell; }
 
     //Setters
     public void setNom(String nom) { this.nom = nom; }
     public void setDataEmbarcament(LocalDate dataEmbarcament) { this.dataEmbarcament = dataEmbarcament; }
     public void setEslora(double eslora) { this.eslora = eslora; }
     public void setManega(double manega) { this.manega = manega; }
-    public void setVaixell(Vaixell vaixell) { 
+    public void setVaixell(VaixellBase vaixell) { 
         this.vaixell = vaixell;
         if(this.vaixell!=null) setDataEmbarcament(LocalDate.now()); 
     }
