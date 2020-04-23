@@ -145,7 +145,7 @@ public class Embarcadors {
         if(embarcadorLliure(gestio.get(posicio))) throw new Exception("No hi ha cap vaixell atracat en aquest embarcador!");
 
         matricula = gestio.get(posicio).getVaixell().getMatricula();
-        gestio.get(posicio).setVaixell(null);
+        gestio.get(posicio).alliberar();
         
         return matricula;
     }
