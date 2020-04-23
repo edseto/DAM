@@ -22,4 +22,10 @@ public class Passatgers extends Vaixell implements VaixellBase{
         
         return preu;
     }
+
+    @Override
+    public boolean atracar(String embarcador, Embarcadors gestio) throws Exception{
+        if(!gestio.atracarVaixell(embarcador, this)) throw new Exception("Error al atracar");
+        return true;
+    }
 }
