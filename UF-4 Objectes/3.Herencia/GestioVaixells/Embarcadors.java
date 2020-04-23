@@ -129,8 +129,10 @@ public class Embarcadors {
         posicio = 0;
 
         while (!trobat&&posicio<gestio.size()) {
-            if(gestio.get(posicio).getVaixell().equals(vaixell)) trobat=true;
-            else posicio++;
+            if(gestio.get(posicio).getVaixell()!=null){
+                if(gestio.get(posicio).getVaixell().equals(vaixell)) trobat=true;
+                else posicio++;
+            }else posicio++;
         }
 
         return (int)ChronoUnit.DAYS.between(LocalDate.now(), gestio.get(posicio).getDataEmbarcament());
@@ -138,13 +140,13 @@ public class Embarcadors {
 
     public String alliberar(String embarcador) throws Exception {
         String matricula;
-        double preu;
 
-        if(!embarcadorExisteix(embarcador)) throw new Exception("L'embarcador no existeix");
+        if(!embarcadorExisteix(embarcador)) throw new Exception("L'embarcador no existeix!");
+        if(embarcadorLliure(gestio.get(posicio))) throw new Exception("No hi ha cap vaixell atracat en aquest embarcador!");
 
         matricula = gestio.get(posicio).getVaixell().getMatricula();
-        preu = gestio.get(posicio).getVaixell().solicitarPreu(this);
-
-        return "El vaixell amb matricula "+matricula + " ha salpat, el preu a abonar es de: "+preu+"€";
+        gestio.get(posicio).setVaixell(null);
+        
+        return matricula;
     }
 }

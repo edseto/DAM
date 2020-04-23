@@ -21,4 +21,21 @@ public class Vaixell {
     public void setMatricula(String matricula) { this.matricula = matricula; }
     public void setEslora(double eslora) { this.eslora = eslora; }
     public void setManega(double manega) { this.manega = manega; }
+
+    //Mètodes
+    protected double preuPrioritat(int prioritat){
+        double preu;
+
+        switch (prioritat) {
+            case 10: preu = 100;
+                break;
+            case 20: preu = 175;
+                break;
+            case 50: preu = 450;
+                break;
+            default: preu = 10; //Per posar un preu per defecte
+                break;
+        }
+        return preu;
+    }
 }

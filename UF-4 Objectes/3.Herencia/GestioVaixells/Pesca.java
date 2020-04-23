@@ -14,11 +14,12 @@ public class Pesca extends Vaixell implements VaixellBase{
 
     @Override
     public double solicitarPreu(Embarcadors gestio){
-        double preu;
+        double preu, preuBase;
         int dies;
 
+        preuBase = preuPrioritat(prioritat());
         dies = gestio.diesEmbarcat(this);
-        preu = prioritat() + dies * ((prioritat()/100 * getEslora()) + (prioritat()/100 * getManega()));
+        preu = preuBase + dies * ((preuBase/100 * getEslora()) + (preuBase/100 * getManega()));
         
         return preu;
     }

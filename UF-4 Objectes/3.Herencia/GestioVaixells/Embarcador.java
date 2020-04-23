@@ -30,7 +30,8 @@ public class Embarcador {
     public void setManega(double manega) { this.manega = manega; }
     public void setVaixell(VaixellBase vaixell) { 
         this.vaixell = vaixell;
-        if(this.vaixell!=null) setDataEmbarcament(LocalDate.now()); 
+        if(this.vaixell!=null) setDataEmbarcament(LocalDate.now());
+        else setDataEmbarcament(null); 
     }
 
     //Mètodes
