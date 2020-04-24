@@ -1,4 +1,4 @@
-public class Vaixell {
+public abstract class Vaixell {
     private String matricula;
     private double eslora; //Llargada
     private double manega; //Amplada
@@ -31,9 +31,7 @@ public class Vaixell {
                 break;
             case 20: preu = 175;
                 break;
-            case 50: preu = 450;
-                break;
-            default: preu = 10; //Per posar un preu per defecte
+            default: preu = 450; //prioritat = 50
                 break;
         }
         return preu;
