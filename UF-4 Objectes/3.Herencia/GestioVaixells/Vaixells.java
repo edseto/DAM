@@ -62,4 +62,22 @@ public class Vaixells {
 
         return trobat;
     }
+
+    //Borrar vaixell
+    public void adeuVaixell(String matricula){
+        vaixells.remove(posicioVaixell(matricula));
+    }
+
+    //Buscar Vaixell
+    private int posicioVaixell(String matricula){
+        boolean trobat = false;
+        int i = 0;
+
+        while(!trobat&&i<vaixells.size()){
+            if(vaixells.get(i).getMatricula().equals(matricula)) trobat = true;
+            else i++;
+        }
+
+        return i;
+    }
 }

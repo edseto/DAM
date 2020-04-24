@@ -126,7 +126,7 @@ public class Menu {
         
         try {
             preu = gestioVaixells.preu(gestio, embarcador);
-            System.out.println("Ha salpat el vaixell amb matricula: "+gestio.alliberar(embarcador));
+            System.out.println("Ha salpat el vaixell amb matricula: "+gestio.alliberar(embarcador, gestioVaixells));
             System.out.println("El preu del servei es: "+preu+"€");
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -138,13 +138,14 @@ public class Embarcadors {
         return (int)ChronoUnit.DAYS.between(LocalDate.now(), gestio.get(posicio).getDataEmbarcament());
     }
 
-    public String alliberar(String embarcador) throws Exception {
+    public String alliberar(String embarcador, Vaixells gestioVaixells) throws Exception {
         String matricula;
 
         if(!embarcadorExisteix(embarcador)) throw new Exception("L'embarcador no existeix!");
         if(embarcadorLliure(gestio.get(posicio))) throw new Exception("No hi ha cap vaixell atracat en aquest embarcador!");
 
         matricula = gestio.get(posicio).getVaixell().getMatricula();
+        gestioVaixells.adeuVaixell(matricula);
         gestio.get(posicio).alliberar();
         
         return matricula;
