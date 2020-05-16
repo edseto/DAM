@@ -1,0 +1,41 @@
+[   
+    {   "zona":1,
+        "totalseients":40,
+        "preu":79
+    },
+
+    {   "zona":2,
+        "totalseients":20,
+        "preu":67
+    },
+
+    {   "zona":3,
+        "totalseients":35,
+        "preu":54
+    },
+
+    {   "zona":4,
+        "totalseients":27,
+        "preu":38.5
+    },
+
+    {   "zona":5,
+        "totalseients":31,
+        "preu":38.5
+    },
+
+    {   "zona":6,
+        "totalseients":43,
+        "preu":36
+    },
+
+    {   "zona":7,
+        "totalseients":17,
+        "preu":26
+    },
+    
+    {   "zona":8,
+        "totalseients":48,
+        "preu":26
+    }
+]
