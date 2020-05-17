@@ -24,4 +24,10 @@ public final class ZonesDB {
 
         return MySQL.consultaPersonalitzada(conDB, consulta);
     }
+
+    public static ResultSet obtenirZona(Connection conDB, int idZona) throws SQLException {
+        String consulta = "SELECT * FROM zones WHERE id_zona = "+idZona;
+
+        return MySQL.consultaPersonalitzada(conDB, consulta);
+    }
 }

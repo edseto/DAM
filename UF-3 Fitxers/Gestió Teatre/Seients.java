@@ -12,7 +12,7 @@ public class Seients {
         nSeients = FuncionsJSON.numeroSeients(zona, fitxer);
 
         for (int i = 0; i < nSeients; i++) {
-            idSeient = "Z"+zona+"-"+i; //id = Z1 - 0 (numZona - numSeient)
+            idSeient = "Z"+zona+"-"+i; //id = Z1-0 (numZona-numSeient)
             seients.add(new Seient(idSeient));
         }
     }

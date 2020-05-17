@@ -35,18 +35,19 @@ public class Main {
         LocalDate data;
         Persona espectador;
         Seient seient;
+        
         do {
-            
-            System.out.println("En el nostre teatre hi ha les següents zones:");
-            for (int i = 0; i < totalZones; i++) {
-                System.out.println(espais.zones.get(i));
-            }
-    
-            System.out.print("A quina zona prefereix seure? (1-" + totalZones + ") ");
-            zona = sc.nextInt();
-    
-            System.out.println("A la zona " + zona + " hi ha els següents seients:");
             try {
+                System.out.println("En el nostre teatre hi ha les següents zones:");
+                query = ZonesDB.obtenirZones(conDB);
+                while (query.next()) {
+                    System.out.println("Zona "+query.getInt("id_zona")+": "+query.getDouble("preu"));
+                }
+        
+                System.out.print("A quina zona prefereix seure? (1-" + totalZones + ") ");
+                zona = sc.nextInt();
+        
+                System.out.println("A la zona " + zona + " hi ha els següents seients:");
                 query = SeientsDB.obtenirSeientsZona(conDB, zona);
                 while (query.next()) {
                     System.out.println(query.getString("id_seient"));
@@ -54,14 +55,15 @@ public class Main {
                 System.out.print("Introdueixi l'identificador del seient: ");
                 idSeient = sc.next();
     
+                seient = buscarSeient(idSeient, zona);
+                
                 espectador = crearPersona();
                 data = demanarData();
-    
-                seient = buscarSeient(idSeient, zona);
+                
                 seient.getReserves().reservar(seient, espectador, data, conDB);
-    
+                
                 System.out.println("El seient " + idSeient + " ha sigut reservat correctament pel dia " + data.toString());
-                System.out.println("El preu total a abonar es: "+espais.zones.get(zona-1).getPreu());
+                System.out.println("El preu total a abonar es: "+ReservaDB.preuTotalEspectador(conDB, espectador.getDni()));
 
                 do {
                     System.out.print("Vol realitzar una altra reserva (Y/N)? ");
@@ -77,11 +79,15 @@ public class Main {
 
     }
 
-    private static Seient buscarSeient(String idSeient, int zona){
-        int index;
-        index = espais.zones.get(zona - 1).getSeients().buscarSeient(idSeient);
-    
-        return espais.zones.get(zona - 1).getSeients().seients.get(index);
+    private static Seient buscarSeient(String idSeient, int zona) throws SQLException {
+        Seient seient;
+        String id;
+        
+        query = SeientsDB.obtenirUnicSeient(conDB, idSeient);
+        id = query.getString("id_seient");
+        seient = new Seient(id);
+
+        return seient; 
     }
 
     private static Persona crearPersona() throws SQLException {

@@ -45,15 +45,21 @@ public final class ReservaDB {
         return MySQL.consultaPersonalitzada(conDB, consulta);
     }
 
-    public static int preuTotalReserva(Connection conDB, String dniEspectador) throws SQLException {
+    public static ResultSet obtenirReserva(Connection conDB, int idReserva) throws SQLException {
+        String consulta = "SELECT * FROM reserva WHERE id_reserva = "+idReserva;
+
+        return MySQL.consultaPersonalitzada(conDB, consulta);
+    }
+
+    public static double preuTotalEspectador(Connection conDB, String dniEspectador) throws SQLException {
         String consulta = "SELECT sum(preu_total) AS total FROM reserva WHERE dni_espectador LIKE '"+dniEspectador+"'";
         ResultSet query = null;
-        int total=0;
+        double total=0;
 
         query = MySQL.consultaPersonalitzada(conDB, consulta);
 
         while (query.next()) {
-            total = query.getInt("total");
+            total = query.getDouble("total");
         }
         return total;
     }

@@ -24,7 +24,7 @@ public final class MySQL {
     }
     
     /*
-        La consulta la poso aqui i no en un gestor de persistència de dades perquè és el mateix codi a cada un
+        La consulta la poso aqui i no en un gestor de persistència de dades perquè seria el mateix codi a cada un
         Aquesta funció serà per si es vol fer una consulta diferent a les predefinides a cada classe
     */
     public static ResultSet consultaPersonalitzada(Connection conDB, String consulta) throws SQLException {
