@@ -91,7 +91,7 @@ public class TestBdd {
         
         System.out.println("***************************");
         // Test preu total reserva
-        System.out.println(ReservaDB.preuTotalReserva(conDB, "12345678A"));
+        System.out.println(ReservaDB.preuTotalEspectador(conDB, "12345678A"));
 
         try {
             query.close();
