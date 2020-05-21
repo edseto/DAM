@@ -4,11 +4,11 @@ import java.sql.*;
 import java.time.LocalDate;
 
 public class Main {
-    static Connection conDB = MySQL.conectarBaseDades();
-    static ResultSet query = null;
-    static Zones espais;
-    static Scanner sc = new Scanner(System.in);
-    static int totalZones;
+    private static Connection conDB = MySQL.conectarBaseDades();
+    private static ResultSet query = null;
+    private static Zones espais;
+    private static Scanner sc = new Scanner(System.in);
+    private static int totalZones;
 
     public static void generarSeients() {
         String fitxer;
