@@ -22,6 +22,4 @@ public class Seient {
     public String toString() {
         return "Seient [id= " + id + "]";
     }
-
-
 }
