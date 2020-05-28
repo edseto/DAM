@@ -98,11 +98,11 @@ public final class Funcions {
         }
     }
 
-    private static int stringToInt(String paraula){
+    public static int stringToInt(String paraula){
         return Integer.parseInt(paraula.trim());
     }
 
-    private static double stringToDouble(String paraula){
+    public static double stringToDouble(String paraula){
         return Double.parseDouble(paraula);
     }
 
